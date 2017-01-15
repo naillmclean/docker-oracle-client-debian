@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Igone Oracle rpm files in line with licensing
+oracle*.rpm
