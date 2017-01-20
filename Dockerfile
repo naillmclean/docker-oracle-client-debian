@@ -6,11 +6,11 @@ MAINTAINER Naill Mclean <naill_mclean@hotmail.com>
 ADD . /tmp/
 RUN if [ -f /tmp/oracle*basic*.rpm ] ; then echo "Oracle rpm files found, now installing..." ; else echo "No Oracle rpm files, exiting" ; fi
 COPY ./oracle* /tmp/
-RUN apt-get update
-RUN apt-get -y install libaio1
-RUN apt-get -y install alien
-RUN alien -k -d -i /tmp/*.rpm 
-RUN mkdir /usr/lib/oracle/12.1/client64/network/admin -p
+RUN apt-get update \
+	&& apt-get -y install libaio1 \
+	&& apt-get -y install alien \
+	&& alien -k -d -i /tmp/*.rpm \
+	&& mkdir /usr/lib/oracle/12.1/client64/network/admin -p
 COPY ./tnsnames.ora /usr/lib/oracle/12.1/client64/network/admin/tnsnames.ora
 
 ENV ORACLE_HOME=/usr/lib/oracle/12.1/client64
